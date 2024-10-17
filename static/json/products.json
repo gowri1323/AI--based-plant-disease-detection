@@ -1,0 +1,182 @@
+[
+    {
+      "id": 1,
+      "name": "DAP Fertilizer And Potash Fertilizer (MOP)",
+      "price": 189.00,
+      "image": "dap.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Phosphate Solubilizing Bacteria Bio Fertilizer",
+      "price": 499.00,
+      "image": "pro2.webp"
+    },
+    {
+      "id": 3,
+      "name": "Zinc Solubilizing Bacteria Bio Fertilizer",
+      "price": 499.00,
+      "image": "pro3.webp"
+    },
+    {
+      "id": 4,
+      "name": "Sulphur & Iron Bacteria Bio Fertilizer",
+      "price": 499.00,
+      "image": "pro4.webp"
+    },
+    {
+      "id": 5,
+      "name": "Acetobacter Nitrogen Fixing Bio Fertilizer",
+      "price": 499.00,
+      "image": "pro5.webp"
+    },
+    {
+      "id": 6,
+      "name": "Calcium Nitrate (Granules) Fertilizer + 18% Calcium",
+      "price": 279.00,
+      "image": "pro6.webp"
+    },
+    {
+      "id": 7,
+      "name": "Potassium Humate Organic Liquid Fertilizer (900 ML)",
+      "price": 579.00,
+      "image": "pro7.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Super Zinc Sulphate Micronutrient Fertilizer (250 gms)",
+      "price": 259.00,
+      "image": "pro8.webp"
+    },
+    {
+      "id": 9,
+      "name": "Ammonium Sulphate Fertilizer (100 g) 100% Water Soluble",
+      "price": 249.00,
+      "image": "pro9.webp"
+    },
+    {
+      "id": 10,
+      "name": "Ammonium Sulphate Fertilizer Powder (5 kg Bag)",
+      "price": 999.00,
+      "image": "pro10.webp"
+    },
+    {
+      "id": 11,
+      "name": "Humic Acid & Seaweed Extract Root Food (10 x 250 gms)",
+      "price": 599.00,
+      "image": "pro11.webp"
+    },
+    {
+      "id": 12,
+      "name": "Foliar Liquid Fertilizer- Primary, Secondary & Micro nutrients",
+      "price": 599.00,
+      "image": "pro12.webp"
+    },
+    {
+      "id": 13,
+      "name": "IMIDA 30.5 Insecticide",
+      "price": 829.00,
+      "image": "pro13.webp"
+    },
+    {
+      "id": 14,
+      "name": "VBM- Bio Insecticide",
+      "price": 1849.00,
+      "image": "pro14.webp"
+    },
+    {
+      "id": 15,
+      "name": "Contact Insecticide",
+      "price": 533.00,
+      "image": "pro15.webp"
+    },
+    {
+      "id": 16,
+      "name": "Geolife Nano Fe",
+      "price": 180.00,
+      "image": "pro16.webp"
+    },
+    {
+      "id": 17,
+      "name": "Rose Fertilizer- 850gm",
+      "price": 589.00,
+      "image": "pro17.webp"
+    },
+    {
+      "id": 18,
+      "name": "Vermicompost- 850gm",
+      "price": 499.00,
+      "image": "p19.webp"
+    },
+    {
+      "id": 19,
+      "name": "Neem Cake Powder Fertilizer",
+      "price": 579.00,
+      "image": "p18.webp"
+    },
+    {
+      "id": 20,
+      "name": "Amipro-Immunity Booster Nitrogen Supplement",
+      "price": 410.00,
+      "image": "p20.webp"
+    },
+    {
+      "id": 21,
+      "name": "Retain Humic Acid Granules|Shiny Granules",
+      "price": 499.00,
+      "image": "p21.webp"
+    },
+    {
+      "id": 22,
+      "name": "Gibrax Phytozyme(Seaweed)",
+      "price": 840.00,
+      "image": "p22.webp"
+    },
+    {
+      "id": 23,
+      "name": "Neem Khali Cake (Organic)",
+      "price": 189.00,
+      "image": "p23.webp"
+    },
+    {
+      "id": 24,
+      "name": "Smart Plant Protector (Pest Controller)",
+      "price": 599.00,
+      "image": "p24.webp"
+    },
+    {
+      "id": 25,
+      "name": "Pyramid (Acetamaprid 20% SP)",
+      "price": 250.00,
+      "image": "p25.webp"
+    },
+    {
+      "id": 26,
+      "name": "3-in-1 Natural Pest Control-katayani",
+      "price": 369.00,
+      "image": "p26.webp"
+    },
+    {
+      "id": 27,
+      "name": "Cold Pressed Water-Soluble Neem Oil EC",
+      "price": 399.00,
+      "image": "p27.webp"
+    },
+    {
+      "id": 28,
+      "name": "Commander (Emamectin Benzoate)",
+      "price": 400.00,
+      "image": "p28.webp"
+    },
+    {
+      "id": 29,
+      "name": "Neem Oil Pest Repellent Spray",
+      "price": 289.00,
+      "image": "p29.webp"
+    },
+    {
+      "id": 30,
+      "name": "Magic FungiX Organic Fungus Controller (200 Grams)",
+      "price": 380.00,
+      "image": "p30.webp"
+    }
+]

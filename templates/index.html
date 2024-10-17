@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index-GreenGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eef5e9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sticky Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(60, 124, 70, 0.8);
+            color: white;
+            padding: 5px 0;
+            z-index: 1000;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .header.scrolled {
+            background-color: #3c7c46;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #a1d3b8;
+        }
+
+        /* Main Content Section */
+        .content {
+            padding: 20px;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        /* Logo Section Styling */
+        .logo-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center; /* Center the logo horizontally */
+        }
+
+        .logo-container img {
+            width: 350px; /* Set the size of the logo */
+            height: 350px;
+            border-radius: 50%; /* Make the logo circular */
+            object-fit: cover; /* Ensure the image fits within the circle */
+            border: 4px solid #465d49; /* Add a border around the circle */
+        }
+
+        /* Quotes Section Styling */
+        .quotes-container {
+            margin-top: 30px;
+            text-align: center;
+            font-style: italic;
+            color: #3c7c46;
+        }
+
+        .quote {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            border: 2px solid #3c7c46;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .quote:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote:before {
+            content: '“';
+            font-size: 2rem;
+            position: absolute;
+            left: -20px;
+            top: -10px;
+            color: #a1d3b8;
+        }
+
+        .quote:after {
+            content: '”';
+            font-size: 2rem;
+            position: absolute;
+            right: -20px;
+            bottom: -10px;
+            color: #a1d3b8;
+        }
+        /* Testimonials Section */
+        .testimonials {
+            background-color:  #d6efdb;
+            padding: 50px 20px;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            width: 300px;
+            text-align: center;
+            margin: 20px;
+            background-color: rgba(184, 224, 190, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #555;
+        }
+         /* Search Section */
+         .search-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .search-section input {
+            width: 50%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #28a745;
+        }
+
+        .search-section button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Responsive Font Sizes */
+        h1 {
+            font-size: 1.5rem; /* Default size for larger screens */
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Default size for larger screens */
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column; /* Stack links vertically on small screens */
+                align-items: flex-start; /* Align links to the left */
+                padding: 10px 0; /* Adjust padding */
+            }
+
+            .header a {
+                padding: 10px; /* Reduce padding for smaller screens */
+                width: 100%; /* Make links full width */
+                text-align: center; /* Center the text */
+            }
+
+            h1 {
+                font-size: 2rem; /* Smaller font size for h1 */
+            }
+
+            h2 {
+                font-size: 1.2rem; /* Smaller font size for h2 */
+            }
+
+            .logo-container img {
+                width: 150px; /* Smaller logo for smaller screens */
+                height: 150px;
+            }
+
+            .quote {
+                font-size: 1rem; /* Smaller font size for quotes */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem; /* Even smaller font size for h1 */
+            }
+
+            h2 {
+                font-size: 1rem; /* Even smaller font size for h2 */
+            }
+
+            .logo-container img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<header class="header" id="header">
+    <div class="header-container">
+        <a href="/">Home</a>
+        <a href="/explore">Explore</a>
+        <a href="/service">Help Centre</a>
+        <a href="/blog">Blog</a>
+        <a href="/login">Login</a>
+  
+    </div>
+</header>
+
+<!-- Main Content Section -->
+<main>
+    <div class="content">
+        <section id="home">
+            <h1 class="font-bold text-4xl">🌽 Welcome to GreenGuard 👨🏻‍🌾</h1>
+            <h2>Your Plant Health Companion: Discover 🔎 Diagnose and Protect</h2>
+        </section>
+
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/logo 1.jpg') }}" alt="GreenGuard Logo">
+        </div>
+
+        <!-- Quotes Section -->
+        <div class="quotes-container">
+            <div class="quote">"Sowing the seeds of health, harvesting the power of AI."</div>
+        </div>
+         <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>Testimonials & User Stories</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <img src="{{ url_for('static', filename='img/life saver.jpg') }}" alt="User 1">
+                <p>"Saved my crops just in time! GreenGuard is a life saver."</p>
+            </div>
+            <div class="testimonial">
+                <img src="{{ url_for('static', filename='img/highly recommended.jpg') }}" alt="User 2">
+                <p>"The AI diagnosis is quick and accurate, highly recommend GreenGuard."</p>
+            </div>
+            <div class="testimonial">
+                <img src="{{ url_for('static', filename='img/crop yield.jpg') }}" alt="User 3">
+                <p>"GreenGuard helped me improve my crop yield. Thank you!"</p>
+            </div>
+        </div>
+    </section>
+       <!-- Search Section -->
+<section class="search-section">
+    <input type="text" id="searchQuery" placeholder="Search for plant diseases, pests, or prevention tips...">
+    <button onclick="performSearch()">Search</button>
+    <div id="searchResults"></div>
+</section>
+
+<script>
+function performSearch() {
+    const query = document.getElementById('searchQuery').value;
+    
+    // Send search query to backend
+    fetch(`/search?q=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Display results in the console
+            displaySearchResults(data); // Function to show results in the frontend
+        })
+        .catch(err => console.error(err));
+}
+
+function displaySearchResults(results) {
+    let resultSection = document.getElementById('searchResults');
+    if (!resultSection) {
+        resultSection = document.createElement('section');
+        resultSection.id = 'searchResults';
+        document.querySelector('.search-section').appendChild(resultSection);
+    }
+    resultSection.innerHTML = ''; // Clear previous results
+
+    results.forEach(result => {
+        const resultItem = document.createElement('div');
+        resultItem.innerHTML = `<h3>${result.name}</h3><p>${result.description}</p>`;
+        resultSection.appendChild(resultItem);
+    });
+}
+</script>
+    
+ <!-- FAQ -->
+
+  <section class="h-screen overflow-hidden flex items-center ">
+
+    <div class="max-w-screen-xl mx-auto px-5 bg-white min-h-sceen">
+      <div class="flex flex-col items-center">
+        <h2 class="font-bold text-5xl mt-5 tracking-tight">
+          FAQ
+        </h2>
+        <p class="text-neutral-500 text-xl mt-3">
+          Frequenty asked questions
+        </p>
+      </div>
+      <div class="grid divide-y divide-neutral-200 max-w-xl mx-auto mt-8">
+        <div class="py-5">
+          <details class="group">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span> 1. What is GreenGuard?</span>
+              <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+    </svg>
+                  </span>
+            </summary>
+            <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                GreenGuard is an AI-powered platform designed to help farmers and gardeners diagnose plant diseases, identify pests, and manage crop health efficiently. Our platform uses advanced AI to analyze plant images and provide accurate recommendations for maintaining plant health.
+            </p>
+          </details>
+        </div>
+        <div class="py-5">
+          <details class="group">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span> 2. How does GreenGuard detect plant diseases?
+              </span>
+              <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+    </svg>
+                  </span>
+            </summary>
+            <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                Answer: GreenGuard uses AI and machine learning algorithms to analyze images of your plants. By identifying specific patterns, symptoms, and signs, it provides insights into potential diseases or pest infestations and suggests preventive or corrective actions.
+            </p>
+          </details>
+        </div>
+        <div class="py-5">
+          <details class="group">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span> 3. Can GreenGuard help with all types of plants?</span>
+              <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+    </svg>
+                  </span>
+            </summary>
+            <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                Answer: Yes, GreenGuard is designed to work with a wide variety of plants, including crops, ornamental plants, and garden plants. Our system continues to expand its database, making it adaptable to more plant species over time.
+            </p>
+          </details>
+        </div>
+        <div class="py-5">
+          <details class="group">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span>4.Is the website available in multiple languages?
+              </span>
+              <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+    </svg>
+                  </span>
+            </summary>
+            <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+              Currently, the website is available in [list languages if applicable]. We are working on adding more language options to accommodate a wider range of users.
+            </p>
+          </details>
+        </div>
+        <div class="py-5">
+          <details class="group">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span> 5. How do I upload images for diagnosis?</span>
+              <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+    </svg>
+                  </span>
+            </summary>
+            <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+            
+                Answer: You can upload images directly through the GreenGuard platform by selecting the “Upload Image” feature. The platform will analyze the image and provide an immediate diagnosis along with recommendations.
+            </p>
+          </details>
+        </div>
+        <div class="py-5">
+          <details class="group">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+              <span> 6. How accurate is GreenGuard's diagnosis?
+
+     
+              </span>
+              <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+    </svg>
+                  </span>
+            </summary>
+            <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                Answer: GreenGuard's AI models are trained on a vast dataset of plant images and scientific research to ensure high accuracy. However, for complex cases, we recommend consulting a plant expert or agricultural extension service for further guidance.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+    </div>
+</main>
+
+<!-- Sticky Header Scroll Effect -->
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+
+</body>
+</html>

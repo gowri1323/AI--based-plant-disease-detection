@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - GreenGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- External stylesheet -->
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eef5e9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sticky Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(60, 124, 70, 0.8);
+            color: white;
+            padding: 10px 0;
+            z-index: 1000;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .header.scrolled {
+            background-color: #3c7c46;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #a1d3b8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('./assets/hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: rgb(24, 111, 31);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* Explore Section Styling */
+        .explore-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .explore-box {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .explore-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .explore-box img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .explore-box h3 {
+            color: #28a745;
+            margin: 20px 0 10px 0;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .explore-box p {
+            padding: 0 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .explore-box a {
+            display: block;
+            text-align: center;
+            padding: 10px 0;
+            margin: 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .explore-box a:hover {
+            background-color: #1e7e34;
+        }
+
+         
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem; /* Smaller font size for smaller screens */
+            }
+
+            .hero p {
+                font-size: 1.2rem; /* Smaller font size for smaller screens */
+            }
+
+            .explore-container {
+                margin: 20px 10px; /* Reduced margins for smaller screens */
+            }
+
+            .explore-box h3 {
+                font-size: 1.2rem; /* Adjusted font size */
+            }
+
+            .explore-box p {
+                font-size: 0.9rem; /* Adjusted font size */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start; /* Align to the left */
+            }
+
+            .header a {
+                padding: 8px 10px; /* Adjusted padding */
+                margin-right: 0; /* Remove margin for stacked layout */
+                margin-bottom: 5px; /* Add margin between links */
+            }
+
+            .hero {
+                height: 60vh; /* Adjust hero section height */
+            }
+
+            .hero h1 {
+                font-size: 2rem; /* Further reduced font size */
+            }
+
+            .hero p {
+                font-size: 1rem; /* Further reduced font size */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header" id="header">
+    <div class="header-container">
+        <a href="/">Home</a>
+        <a href="/explore">Explore</a>
+        <a href="/service"> Help Centre</a>
+        <a href="/blog">Blog</a>
+        <a href="/login">Login</a>
+   
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div>
+        <h1>Welcome to GreenGuard Blog</h1>
+        <p>Discover insights on sustainable agriculture, plant care, and eco-friendly practices.</p>
+    </div>
+</section>
+
+<!-- Explore Section -->
+<section class="explore">
+    <div class="explore-container">
+        <!-- Blog Post 1 -->
+        <div class="explore-box">
+            <img src="{{ url_for('static', filename='img/plant disease identify.jpg') }}" alt="Blog Post 1">
+            <h3>How to Identify Common Plant Diseases</h3>
+            <p>Learn how to recognize the early signs of plant diseases to protect your crops.</p>
+            <a href=" https://www.proflowers.com/blog/plant-diseases">Read More</a>
+        </div>
+        <!-- Blog Post 2 -->
+        <div class="explore-box">
+            <img src="{{ url_for('static', filename='img/female-gardener-spraying-insecticide-plant_23-2147918609.jpg') }}" alt="Blog Post 2">
+            <h3>Sustainable Pest Control Methods</h3>
+            <p>Discover eco-friendly ways to manage pests without harming the environment.</p>
+            <a href=" https://www.greenlivinginspiration.com/blog/sustainable-pest-control-natural-and-non-toxic-methods/">Read More</a>
+        </div>
+        <!-- Blog Post 3 -->
+        <div class="explore-box">
+            <img src="{{ url_for('static', filename='img/close-up-basket-vegetables_23-2148579742.jpg') }}" alt="Blog Post 3">
+            <h3>Benefits of Organic Farming</h3>
+            <p>Find out how organic farming can improve soil health and the crop yield.</p>
+            <a href="https://www.nimbusagrofarms.in/post/advantages-of-organic-farming">Read More</a>
+        </div>
+        <!-- Blog Post 4 -->
+        <div class="explore-box">
+            <img src="{{ url_for('static', filename='img/watering.jpg') }}" alt="Blog Post 4">
+            <h3>Water Conservation Tips for Agriculture</h3>
+            <p>Learn how to save water while maintaining healthy plants and crops.</p>
+            <a href="https://www.green.earth/blog/10-agricultural-techniques-for-water-conservation">Read More</a>
+        </div>
+        
+    </div>
+</section>
+
+
+
+<!-- Sticky Header Scroll Effect -->
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+
+</body>
+</html>

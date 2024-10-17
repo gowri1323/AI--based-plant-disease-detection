@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Advisor - Real-Time Expert Suggestions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #5a935c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        #advisor-selection h2, #instructions h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        .advisor-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .advisor-card {
+            background-color: rgb(206, 219, 209);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .advisor-card:hover {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .advisor-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .advisor-card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .advisor-card p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .advisor-card a {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .advisor-card a:hover {
+            background-color: #45a049;
+        }
+
+        #instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #instructions li {
+            padding: 5px 0;
+            font-size: 1.1em;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .advisor-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .advisor-card {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .advisor-card {
+                width: 100%;
+            }
+
+            .advisor-card h3 {
+                font-size: 1.2em;
+            }
+
+            .advisor-card p {
+                font-size: 0.8em;
+            }
+        }
+        h2,p,li {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crop Advisor</h1>
+        <p>Get real-time expert suggestions through phone calls</p>
+    </header>
+
+    <section id="advisor-selection">
+        <h2>Select Your Agriculture Expert</h2>
+        <p>Choose from the list of experts below to get guidance on your crop-related issues:</p>
+        <div class="advisor-container">
+            <div class="advisor-card">
+                <img src="{{ url_for('static', filename='img/doe.jpg') }}" alt="John Doe">
+                <h3>John Doe</h3>
+                <p>Expert in Crop Management</p>
+                <a href="tel:9025828286">Call Now</a>
+            </div>
+            <div class="advisor-card">
+                <img src="{{ url_for('static', filename='img/smith.jpg') }}" alt="Jane Smith">
+                <h3>Jane Smith</h3>
+                <p>Specialist in Pest Control</p>
+                <a href="tel:9042028336">Call Now</a>
+            </div>
+            <div class="advisor-card">
+                <img src="{{ url_for('static', filename='img/ray.jpg') }}" alt="Mike Brown">
+                <h3>Emily Davis</h3>
+                <p>Soil and Fertilizer Expert</p>
+                <a href="tel:8056649305">Call Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructions">
+        <h2>How It Works</h2>
+        <ul>
+            <li>Select an expert from the list above.</li>
+            <li>Click the "Call Now" button to directly connect with the advisor via phone.</li>
+            <li>Discuss your crop issues and get real-time solutions!</li>
+        </ul>
+    </section>
+
+    
+</body>
+</html>

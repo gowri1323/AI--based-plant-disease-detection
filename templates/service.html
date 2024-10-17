@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service - GreenGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- Link to your stylesheet -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eef5e9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sticky Header (from Blog Page) */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(60, 124, 70, 0.8);
+            color: white;
+            padding: 10px 0;
+            z-index: 1000;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .header.scrolled {
+            background-color: #3c7c46;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px; /* Added padding for better spacing */
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #a1d3b8;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: #c0e4c3;
+            padding: 20px 20px;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            color: #3c7c46;
+            font-size: 36px;
+        }
+
+        .hero-section p {
+            color: #5c9d6b;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Services Section */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: #28a745;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .service-card button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Added transition for button */
+        }
+
+        .service-card button:hover {
+            background-color: #3c7c46;
+        }
+        /* Main Header for Explore Page */
+        h1 {
+            text-align: center;
+            color: #117929;
+            margin-top: 1rem;
+        }
+
+        /* Explore Section Styling */
+        .explore-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 300px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Card Flip Effect */
+        .explore-box {
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .explore-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .explore-box:hover .explore-inner {
+            transform: rotateY(180deg);
+        }
+
+        .explore-front, .explore-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .explore-front {
+            background-color: #dbf1d3;
+            color: #217612;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .explore-front img {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .explore-back {
+            background-color: #40ab59;
+            color: rgb(193, 221, 180);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .explore-back p {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .explore-back a {
+            margin-top: 20px;
+            background-color: white;
+            color: #28a745;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .explore-back a:hover {
+            background-color: #f4f4f4;
+        }
+
+       
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 28px; /* Smaller font size for h1 */
+            }
+
+            .hero-section p {
+                font-size: 16px; /* Smaller font size for p */
+            }
+
+            .services {
+                padding: 20px; /* Reduced padding for services section */
+            }
+
+            .service-card {
+                padding: 20px; /* Reduced padding for service cards */
+            }
+
+            .service-card h3 {
+                font-size: 20px; /* Smaller font size for service card titles */
+            }
+
+            .service-card p {
+                font-size: 14px; /* Smaller font size for service card descriptions */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                flex-direction: column; /* Stack links vertically on small screens */
+                align-items: flex-start; /* Align links to the left */
+            }
+
+            .header a {
+                padding: 10px; /* Reduce padding for smaller screens */
+                width: 100%; /* Make links full width */
+                text-align: center; /* Center the text */
+            }
+
+            .hero-section h1 {
+                font-size: 24px; /* Even smaller font size for h1 */
+            }
+
+            .hero-section p {
+                font-size: 14px; /* Even smaller font size for p */
+            }
+
+            .service-card img {
+                width: 50px; /* Smaller images for service cards */
+                height: 50px;
+            }
+
+            .service-card h3 {
+                font-size: 18px; /* Smaller font size for service card titles */
+            }
+
+            .service-card p {
+                font-size: 12px; /* Smaller font size for service card descriptions */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section (from Blog Page) -->
+<header class="header" id="header">
+    <div class="header-container">
+        <a href="/">Home</a>
+        <a href="/explore">Explore</a>
+        <a href="/service"> Help Centre</a>
+        <a href="/blog">Blog</a>
+        <a href="/login">Login</a>
+       
+    </div>
+</header>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1>Our Services</h1>
+    <p>Explore the advanced AI-driven solutions that GreenGuard offers to ensure plant health and growth.</p>
+</div>
+
+<!-- Services Section -->
+<div class="services">
+    <div class="explore-container">
+        
+        <!-- Box 1: Instant Crop Health Scan -->
+        <div class="explore-box">
+            <div class="explore-inner">
+                <div class="explore-front">
+                    <img src="{{ url_for('static', filename='img/image diagonsis.jpg') }}" alt="Early Detection Icon">
+                    <h3> Plant Disease Diagnosis</h3>
+                </div>
+                <div class="explore-back">
+                    <p>" Accurately detect plant diseases using our AI-powered diagnostic tools."</p>
+                    <a href="/diagnosis"> view</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 2: GreenGuard Online Store -->
+        <div class="explore-box">
+            <div class="explore-inner">
+                <div class="explore-front">
+                    <img src="{{ url_for('static', filename='img/crop advisor.jpg') }}" alt="AI Insights Icon">
+                    <h3>Crop Advisor</h3>
+                </div>
+                <div class="explore-back">
+                    <p>" Receive expert advice on managing pests that may harm your plants."</p>
+                    <a href="/pest-control"> view</a> <!-- Link to cart page -->
+                </div>
+            </div>
+        </div>
+    </div>
+     
+ 
+
+<!-- Sticky Header Scroll Effect (from Blog Page) -->
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });

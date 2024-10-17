@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Diagnosis - GreenGuard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef5e9;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: rgba(60, 124, 70, 0.8);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        /* Blog Page Styling */
+        .blog-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-title {
+            color: #117929;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .blog-image {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .blog-image img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-content {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .blog-content h2 {
+            color: #28a745;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+        }
+
+        .blog-footer {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin-top: 20px;
+        }
+        
+        .back-link {
+    position: fixed; /* Fixes the position */
+    top: 20px; /* Adjusts the vertical position */
+    left: 20px; /* Adjusts the horizontal position */
+    z-index: 1000; /* Ensures it’s on top of other elements */
+}
+
+.icon-link {
+    text-decoration: none; /* Removes the underline */
+    color: rgb(249, 235, 235); /* Icon color */
+    font-size: 24px; /* Adjust the size */
+}
+
+.icon-link:hover {
+    color: blue; /* Change color on hover */
+}
+
+    </style>
+</head>
+<body>
+    <div class="back-link">
+        <a href="/service" class="icon-link">
+            <i class="fas fa-arrow-left"></i> <!-- Font Awesome icon -->
+        </a>
+    </div>
+    
+
+    <header class="header">
+        <h1>GreenGuard</h1>
+    </header>
+
+    <div class="blog-container">
+        <h1 class="blog-title">Plant Disease Diagnosis  </h1>
+        
+        <div class="blog-image">
+            <img src="{{ url_for('static', filename='img/ser3.jpg') }}" alt="Plant Disease Diagnosis">
+        </div>
+
+        <div class="blog-content">
+            <h2>Our Expertise in Plant Disease Detection</h2>
+            <p>
+                At GreenGuard, we specialize in diagnosing plant diseases with the highest accuracy using advanced AI technologies. Our system analyzes symptoms, predicts potential threats, and offers immediate solutions to safeguard your crops.
+            </p>
+            <p>
+                Our platform allows farmers to scan plants for early-stage diseases. With just a quick capture of plant leaves or stems, our tool identifies visible signs of infections and pests. Timely interventions are essential for crop health, and we provide actionable insights based on real-time data.
+            </p>
+            
+            <h2>How It Works</h2>
+            <p>
+                Using our system is simple. Users can upload photos of the affected plant parts or directly scan through their phone’s camera. Our platform instantly matches the symptoms with our vast disease database to detect the exact problem.
+            </p>
+
+             
+            <h2>What We Offer</h2>
+            <p>
+                - Disease and pest identification through AI scanning.<br>
+                - Early detection to prevent crop loss.<br>
+                - Expert recommendations on treatment and prevention.<br>
+                - Monitoring of plant health to ensure long-term sustainability.
+            </p>
+
+            <div class="blog-image">
+               
+            </div>
+
+            <h2>Why Choose GreenGuard?</h2>
+            <p>
+                We combine years of agricultural knowledge with state-of-the-art technology. Our mission is to empower farmers with the tools they need to combat plant diseases effectively and efficiently. Protect your investment, boost yields, and ensure the health of your crops with GreenGuard.
+            </p>
+        </div>
+        
+
+         
+    </div>
+
+</body>
+</html>

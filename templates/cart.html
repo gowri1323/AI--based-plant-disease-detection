@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGuard Online Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #eef5e9;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+
+        /* Header Styling */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(60, 124, 70, 0.8);
+            color: white;
+            padding: 10px 0;
+            z-index: 1000;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .header.scrolled {
+            background-color: #3c7c46;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #a1d3b8;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #28a745;
+        }
+
+        .product-container {
+            max-width: 3000px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .product-card h3 {
+            color: #28a745;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .product-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .product-card button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product-card button:hover {
+            background-color: #218838;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color:  #eef5e9;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .modal-content button {
+            margin: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+            }
+        }
+        back-link {
+    position: fixed; /* Fixes the position */
+    top: 20px; /* Adjusts the vertical position */
+    left: 20px; /* Adjusts the horizontal position */
+    z-index: 1000; /* Ensures it’s on top of other elements */
+}
+
+.icon-link {
+    text-decoration: none; /* Removes the underline */
+    color: rgb(22, 17, 17); /* Icon color */
+    font-size: 24px; /* Adjust the size */
+}
+
+.icon-link:hover {
+    color: blue; /* Change color on hover */
+}
+         
+        #cart-icon {
+    position: absolute;
+    right: 20px; /* Adjust this value to control the distance from the right edge */
+    top: 20px; /* Adjust this value to control the distance from the top edge */
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+#cart-icon:hover {
+    color: #1abc9c; /* Change color on hover */
+}
+
+/* Ensure the parent container has a relative position */
+.navbar, .header {
+    position: relative;
+}
+    </style>
+</head>
+<body>
+   
+    
+
+<!-- Header Section -->
+<header class="header" id="header">
+    <div class="header-container">
+        <a href="/">Home</a>
+        <a href="/explore">Explore</a>
+        <a href="/service">Help Centre</a>
+        <a href="/blog">Blog</a>
+        <a href="/login">Login</a>
+    
+    </div>
+</header>
+
+    <h1>GreenGuard Online Store</h1>
+    <div class="navbar">
+        <a href="{{ url_for('basket') }}" id="cart-icon">
+           <i class="fas fa-shopping-cart"></i>
+        </a>
+    </div>
+    <div class="back-link">
+        <a href="{{ url_for('explore') }}" class="icon-link">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- Product Container -->
+    <div class="product-container">
+        <!-- display the products here -->
+        {% for product in products %}
+        <div class="product-card" 
+             data-id="{{ product.id }}" 
+             data-name="{{ product.name }}" 
+             data-price="{{ product.price }}" 
+             data-image="{{ url_for('static', filename='img/' + product.image) }}">
+            <img src="{{ url_for('static', filename='img/' + product.image) }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <div class="price">Rs. {{ product.price }}</div>
+            <button onclick="addToCart(this)">Add to Cart</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal for Cart Confirmation -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <h4>Product added to cart</h4>
+            <button onclick="goToCart()">Cart</button>
+            <button onclick="buyNow()">Buy Now</button>
+            <button onclick="closeModal()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+    // read the json file from static/json/products.json
+    let products = [];
+    fetch('/static/json/products.json')
+        .then(response => response.json())
+        .then(data => {
+            products = data;
+            const productContainer = document.querySelector('.product-container');
+            productContainer.innerHTML = ''; // Clear existing content
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="/static/img/${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <div class="price">Rs. ${product.price.toFixed(2)}</div>
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        });
+
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+        if (existingProductIndex !== -1) {
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            cart.push({...product, quantity: 1});
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cartModal').style.display = 'block';
+        updateCartIcon();
+    }
+
+    function updateCartIcon() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartIcon = document.getElementById('cart-icon');
+        if (cartIcon) {
+            cartIcon.setAttribute('data-count', totalItems);
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('cartModal').style.display = 'none';
+    }
+
+    function goToCart() {
+        window.location.href = '/basket';
+        
+    }
+
+    function buyNow() {
+        window.location.href = '/checkout';
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCartIcon);
+
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    </script>
+</body>
+</html>

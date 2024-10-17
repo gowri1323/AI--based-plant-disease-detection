@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- External stylesheet -->
+    <style>
+        body {
+            background-color: #eef5e9;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #28a745;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item h3 {
+            color: #28a745;
+            font-size: 18px;
+            margin: 0 10px;
+            flex-grow: 1;
+        }
+
+        .cart-item .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+            margin-right: 10px;
+        }
+
+        .cart-item .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item .quantity button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .cart-item .quantity span {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .checkout-button, .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .checkout-button:hover, .button-link:hover {
+            background-color: #218838;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Your Cart</h1>
+
+<div class="cart-container" id="cartContainer">
+    <!-- Cart items will be dynamically inserted here -->
+</div>
+
+<div class="total" id="cartTotal"></div>
+
+<center>
+    <button class="checkout-button" onclick="checkout()">Proceed to Checkout</button>
+    <a href="/cart" class="button-link">Back to Store</a>
+</center>
+
+<script>
+    function loadCartItems() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartContainer = document.getElementById('cartContainer');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        cartContainer.innerHTML = '';
+        let total = 0;
+
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            cart.forEach((item, index) => {
+                const cartItem = `
+                    <div class="cart-item">
+                        <img src="/static/img/${item.image}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <div class="price">Rs. ${item.price.toFixed(2)}</div>
+                        <div class="quantity">
+                            <button onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+                cartContainer.innerHTML += cartItem;
+                total += item.price * item.quantity;
+            });
+        }
+
+        cartTotal.innerHTML = `Total: Rs. ${total.toFixed(2)}`;
+    }
+
+    function updateQuantity(index, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCartItems();
+    }
+
+    function checkout() {
+        window.location.href = '/checkout';
+    }
+
+    window.onload = loadCartItems;
+</script>
+
+</body>
+</html>
