@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
             background-color: #eef5e9;
             font-family: 'Poppins', sans-serif;
         }
- 
+
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -116,19 +116,6 @@
                 <input type="text" class="form-control" id="address" placeholder="Enter your address" required>
             </div>
             <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="Enter your city" required>
-            </div>
-            <div class="form-group">
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" placeholder="Enter your state" required>
-            </div>
-            <div class="form-group">
-                <label for="zip">Postal Code</label>
-                <input type="text" class="form-control" id="zip" placeholder="Enter your postal code" required>
-            </div>
-        </div>
-          <div class="form-group">
                 <label for="state">State</label>
                 <select class="form-control" id="state" required>
                     <option value="">Select your state</option>
@@ -209,9 +196,7 @@
     </div>
 </div>
 
-
 <script>
-    
     // Sample city data based on states
     const cityData = {
         "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
@@ -258,7 +243,24 @@
         "Ladakh": ["Leh", "Kargil"],
         "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla", "Udhampur"]
 };
-   
+    
+
+    // Function to populate cities based on selected state
+    document.getElementById('state').addEventListener('change', function() {
+        const selectedState = this.value;
+        const citySelect = document.getElementById('city');
+        citySelect.innerHTML = '<option value="">Select your city</option>';  // Reset the city options
+
+        if (cityData[selectedState]) {
+            cityData[selectedState].forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        }
+    });
+
     function loadCartItems() {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const checkoutSummary = document.getElementById('checkoutSummary');
