@@ -176,63 +176,101 @@ def analyze_image():
 
             # Return the AI response as HTML
             return f"""
-            <html>
+             <html>
                 <style>
                     body {{
-                        font-family: Arial, sans-serif;
-                        background-color: #f4f4f9;
+                        font-family: 'Poppins', sans-serif;
+                        background-color: #e0f7fa;
                         color: #333;
                         margin: 0;
                         padding: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
                     }}
 
                     .container {{
-                        max-width: 600px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #fff;
-                        border-radius: 8px;
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        background-color: #ffffff;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                        padding: 30px;
+                        max-width: 700px;
+                        text-align: center;
+                        transition: transform 0.3s ease-in-out;
+                    }}
+
+                    .container:hover {{
+                        transform: scale(1.02);
                     }}
 
                     h1 {{
-                        color: #2c3e50;
+                        color: #00796b;
+                        font-size: 2em;
+                        margin-bottom: 20px;
                     }}
 
-                    form {{
-                        display: flex;
-                        flex-direction: column;
+                    p {{
+                        font-size: 1.1em;
+                        line-height: 1.6;
+                        color: #546e7a;
+                    }}
+
+                    .result-box {{
+                        background-color: #f1f8e9;
+                        border: 2px solid #aed581;
+                        border-radius: 10px;
+                        padding: 20px;
+                        margin-top: 20px;
+                        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
                     }}
 
                     label {{
                         font-weight: bold;
-                        margin-bottom: 5px;
+                        margin-bottom: 10px;
+                        display: block;
+                        color: #00796b;
                     }}
 
                     input, button {{
-                        padding: 10px;
-                        margin-bottom: 15px;
+                        padding: 12px;
                         border: 1px solid #ddd;
-                        border-radius: 4px;
+                        border-radius: 8px;
+                        margin-bottom: 15px;
+                        width: 100%;
+                        font-size: 1em;
                     }}
 
                     button {{
-                        background-color: #2c3e50;
+                        background-color: #00796b;
                         color: white;
                         cursor: pointer;
+                        border: none;
+                        transition: background-color 0.3s;
                     }}
 
                     button:hover {{
-                        background-color: #34495e;
+                        background-color: #004d40;
+                    }}
+
+                    .ai-response {{
+                        margin-top: 20px;
+                        font-style: italic;
+                        color: #2e7d32;
                     }}
                 </style>
                 <body>
-                    <h1>Plant Disease Analysis</h1>
-                    <p>Species: {input_text}</p>
-                    <p>Uploaded Image: {image_file.filename}</p>
-                    <p>AI Response: {markdown.markdown(response_text)}</p>
+                    <div class="container">
+                        <h1>Plant Disease Analysis</h1>
+                        <p>Species: {input_text}</p>
+                        <p>Uploaded Image: {image_file.filename}</p>
+                        <div class="result-box">
+                        <label>AI Response:</label>
+                        <p class="ai-response">{markdown.markdown(response_text)}</p>
+                        </div>
+                    </div>
                 </body>
-            </html>
+            </html> 
             """
 
         except Exception as e:
