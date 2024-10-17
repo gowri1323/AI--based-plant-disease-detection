@@ -230,4 +230,4 @@ def get_gemini_response(input_text, image):
     return response.text
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
