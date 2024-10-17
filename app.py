@@ -57,6 +57,21 @@ def diagnosis():
 def pest_control():
     return render_template('pest-control.html')
 
+# Function to save the uploaded image locally
+def save_image_locally(file, filename, save_dir='images'):
+    # Create the directory if it doesn't exist
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+
+    # Build the full file path
+    file_path = os.path.join(save_dir, filename)
+
+    # Open the file in binary mode and write it to the directory
+    with open(file_path, 'wb') as f:
+        f.write(file.read())
+
+    print(f"File saved at: {file_path}")
+
 # Endpoint to handle image and input text
 @app.route('/analyze', methods=['GET', 'POST'])
 def analyze_image():
@@ -66,11 +81,14 @@ def analyze_image():
             <html>
             <style>
                     body {
+                    display:flex;
                         font-family: Arial, sans-serif;
                         background-color: #f4f4f9;
                         color: #333;
                         margin: 0;
                         padding: 20px;
+                        align-items:center;
+                        justify-content:center;
                     }
 
                     .container {
@@ -107,6 +125,11 @@ def analyze_image():
                         background-color: #2c3e50;
                         color: white;
                         cursor: pointer;
+                        height:40px;
+                        width:140px;
+                        margin-left:100px;
+                        
+
                     }
 
                     button:hover {
@@ -115,9 +138,11 @@ def analyze_image():
                 </style>
                     
                 <body>
-                    <h1>Plant Disease Analysis</h1>
+                    
+                    
                     <form method="POST" enctype="multipart/form-data" action="/analyze">
-                        <label for="input_text">Input Text:</label>
+                    <h1>Plant Disease Analysis</h1>
+                        <label for="input_text">Species</label>
                         <input type="text" id="input_text" name="input_text"><br><br>
                         <label for="image">Upload Image:</label>
                         <input type="file" id="image" name="image" accept="image/*"><br><br>
@@ -135,18 +160,21 @@ def analyze_image():
             # Check if an image file was uploaded
             if image_file.filename == '':
                 return jsonify({"error": "No selected file"}), 400
-            
+
+            # Save the uploaded image locally
+            save_image_locally(image_file, image_file.filename)
+
             # Print input text and image filename for debugging
             print(f"Input Text: {input_text}")
             print(f"Uploaded Image: {image_file.filename}")
 
-            # Open the image using PIL
+            # Open the image using PIL (optional, depending on your processing needs)
             image = Image.open(image_file)
 
             # Process the image and input text with generative AI
             response_text = get_gemini_response(input_text, image)
 
-            # Return the AI response as JSON
+            # Return the AI response as HTML
             return f"""
             <html>
                 <style>
@@ -200,7 +228,7 @@ def analyze_image():
                 </style>
                 <body>
                     <h1>Plant Disease Analysis</h1>
-                    <p>Input Text: {input_text}</p>
+                    <p>Species: {input_text}</p>
                     <p>Uploaded Image: {image_file.filename}</p>
                     <p>AI Response: {markdown.markdown(response_text)}</p>
                 </body>
@@ -210,6 +238,7 @@ def analyze_image():
         except Exception as e:
             print(f"Error: {str(e)}")  # Print the error for debugging
             return jsonify({"error": str(e)}), 500
+
 
 # Function to load OpenAI model and get responses
 def get_gemini_response(input_text, image):
@@ -230,4 +259,4 @@ def get_gemini_response(input_text, image):
     return response.text
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
