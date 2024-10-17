@@ -10,7 +10,7 @@
             background-color: #eef5e9;
             font-family: 'Poppins', sans-serif;
         }
-
+ 
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -128,6 +128,88 @@
                 <input type="text" class="form-control" id="zip" placeholder="Enter your postal code" required>
             </div>
         </div>
+          <div class="form-group">
+                <label for="state">State</label>
+                <select class="form-control" id="state" required>
+                    <option value="">Select your state</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+
+                    <!-- Union Territories -->
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <select class="form-control" id="city" required>
+                    <option value="">Select your city</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="zip">Postal Code</label>
+                <input type="text" class="form-control" id="zip" placeholder="Enter your postal code" required>
+            </div>
+        </div>
+
+        <!-- Payment Method Section -->
+        <div class="form-section">
+            <h4>Payment Method</h4>
+            <div class="payment-method">
+                <label for="creditCard"><input type="radio" id="creditCard" name="payment" checked> Credit Card</label>
+                <label for="debitCard"><input type="radio" id="debitCard" name="payment"> Debit Card</label>
+                <label for="upi"><input type="radio" id="upi" name="payment"> UPI</label>
+            </div>
+        </div>
+
+        <!-- Place Order Button -->
+        <button type="submit" class="btn-custom">Place Order</button>
+    </form>
+
+    <!-- Back to Cart Link -->
+    <div class="back-link">
+        <a href="/cart">Back to store</a>
+    </div>
+</div>
+
+
 
         <!-- Payment Method Section -->
         <div class="form-section">
@@ -150,6 +232,54 @@
 </div>
 
 <script>
+    
+    // Sample city data based on states
+    const cityData = {
+        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
+        "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
+        "Karnataka": ["Bangalore", "Mysore", "Mangalore"],
+        "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode"],
+        "Delhi": ["New Delhi", "Delhi"],
+        "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Tirupati"],
+        "Arunachal Pradesh": ["Itanagar", "Tawang", "Ziro", "Bomdila", "Pasighat"],
+        "Assam": ["Guwahati", "Dibrugarh", "Jorhat", "Silchar", "Tezpur"],
+        "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga"],
+        "Chhattisgarh": ["Raipur", "Bilaspur", "Durg", "Korba", "Jagdalpur"],
+        "Goa": ["Panaji", "Margao", "Vasco da Gama", "Ponda", "Mapusa"],
+        "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar"],
+        "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala", "Hisar"],
+        "Himachal Pradesh": ["Shimla", "Manali", "Dharamshala", "Kullu", "Solan"],
+        "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Deoghar"],
+        "Karnataka": ["Bengaluru", "Mysuru", "Mangalore", "Hubli", "Belgaum"],
+        "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Alappuzha"],
+        "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain"],
+        "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
+        "Manipur": ["Imphal", "Thoubal", "Bishnupur", "Churachandpur", "Ukhrul"],
+        "Meghalaya": ["Shillong", "Tura", "Nongstoin", "Jowai", "Baghmara"],
+        "Mizoram": ["Aizawl", "Lunglei", "Champhai", "Kolasib", "Serchhip"],
+        "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Tuensang", "Wokha"],
+        "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Puri", "Sambalpur"],
+        "Punjab": ["Chandigarh", "Ludhiana", "Amritsar", "Jalandhar", "Patiala"],
+        "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer"],
+        "Sikkim": ["Gangtok", "Pelling", "Namchi", "Yuksom", "Ravangla"],
+        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"],
+        "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Khammam"],
+        "Tripura": ["Agartala", "Dharmanagar", "Kailashahar", "Udaipur", "Belonia"],
+        "Uttar Pradesh": ["Lucknow", "Kanpur", "Agra", "Varanasi", "Meerut"],
+        "Uttarakhand": ["Dehradun", "Haridwar", "Nainital", "Rishikesh", "Almora"],
+        "West Bengal": ["Kolkata", "Howrah", "Darjeeling", "Durgapur", "Siliguri"],
+        
+        // Union Territories
+        "Andaman and Nicobar Islands": ["Port Blair", "Rangat", "Mayabunder", "Diglipur"],
+        "Chandigarh": ["Chandigarh"],
+        "Dadra and Nagar Haveli and Daman and Diu": ["Daman", "Diu", "Silvassa"],
+        "Lakshadweep": ["Kavaratti", "Agatti", "Amini", "Minicoy"],
+        "Delhi": ["New Delhi", "Old Delhi", "Dwarka", "Rohini", "Saket"],
+        "Puducherry": ["Puducherry", "Karaikal", "Yanam", "Mahe"],
+        "Ladakh": ["Leh", "Kargil"],
+        "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla", "Udhampur"]
+};
+   
     function loadCartItems() {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const checkoutSummary = document.getElementById('checkoutSummary');
