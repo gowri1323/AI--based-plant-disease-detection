@@ -56,6 +56,7 @@ def diagnosis():
 @app.route('/pest-control')
 def pest_control():
     return render_template('pest-control.html')
+    
 
 # Function to save the uploaded image locally
 def save_image_locally(file, filename, save_dir='images'):
@@ -122,7 +123,7 @@ def analyze_image():
                     }
 
                     button {
-                        background-color: #2c3e50;
+                        background-color:  #3c7c46;
                         color: white;
                         cursor: pointer;
                         height:40px;
@@ -131,10 +132,22 @@ def analyze_image():
                         
 
                     }
-
-                    button:hover {
-                        background-color: #34495e;
+                    .back-button {
+                        display: inline-block;
+                        padding: 10px 10px;
+                        background-color:  #3c7c46; /* Change this to your preferred color */
+                        color: white;
+                        text-align: center;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        transition: background-color 0.3s;
                     }
+
+                    .back-button:hover {
+                        background-color: #0056b3; /* Darker shade for hover effect */
+                    }
+
+ 
                 </style>
                     
                 <body>
@@ -147,6 +160,15 @@ def analyze_image():
                         <label for="image">Upload Image:</label>
                         <input type="file" id="image" name="image" accept="image/*"><br><br>
                         <button type="submit">Analyze Image</button>
+                       
+                     <!-- Back to explore Link -->
+                     <center>
+                       <div class="back-link">
+                        <a href="/explore" class="back-button">Back to explore</a>
+                    </div>
+                    </center>
+
+                        </div>
                     </form>
                 </body>
             </html>
@@ -258,6 +280,21 @@ def analyze_image():
                         font-style: italic;
                         color: #2e7d32;
                     }}
+                    .back-button {{
+                            display: inline-block;
+                            padding: 10px 10px;
+                            background-color:  #3c7c46; /* Change this to your preferred color */
+                            color: white;
+                            text-align: center;
+                            text-decoration: none;
+                            border-radius: 5px;
+                            transition: background-color 0.3s;
+                        }}
+
+                        .back-button:hover {{
+                            background-color: #0056b3; /* Darker shade for hover effect */
+                        }}
+
                 </style>
                 <body>
                     <div class="container">
@@ -267,6 +304,12 @@ def analyze_image():
                         <div class="result-box">
                         <label>AI Response:</label>
                         <p class="ai-response">{markdown.markdown(response_text)}</p>
+                  <!-- Back to explore Link -->
+                        <div class="back-link">
+                            <a href="/explore" class="back-button">Back to explore</a>
+                        </div>
+                    </div>
+
                         </div>
                     </div>
                 </body>
